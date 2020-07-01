@@ -1,0 +1,7 @@
+HPE Mellanox MFT Driver
+HPE Mellanox RoCE
+firmware-nic-mellanox
+firmware-hca-mellanox
+Online Firmware Upgrade Utility (Windows x64)
+Online Firmware Upgrade Utility (ESXi 6.5
+Online Firmware Upgrade Utility (ESXi 6.7
