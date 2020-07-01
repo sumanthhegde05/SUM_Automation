@@ -70,7 +70,6 @@ Test ping
 Test main
     close all browsers
     create file     ${output}\\${spp_dir_name}\\${day}\\output_logs\\Details\\baseline_error.txt
-    
     ${file}=    get file    Text_files\\user.txt    encoding=UTF-8
     @{lines}=   split to lines  ${file}
     log to console  ${lines}
