@@ -1,5 +1,1 @@
-Deployment screen HTML content was changes in spp version .65 and above. 
-Reboot always option was made available for all os (previously it was only done for ESXi)
-Automatic mounting of spp in no user interface mode.
-Customized spp directory.
-Customized output path for logs.
+
