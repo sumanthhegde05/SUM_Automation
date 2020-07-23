@@ -3,4 +3,4 @@
 3. Automatic mounting of spp in no user interface mode.
 4. Customized spp directory.
 5. Customized output path for logs.
-
+6. Dashboard bugs fixed.
