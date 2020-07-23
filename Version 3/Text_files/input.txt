@@ -1,0 +1,10 @@
+#INPUT FILE
+SPP_DIR= D:\spp
+SPP_ISO= SPPGen10PlusSnap3.2020_0430.81.iso
+CUSTOM_BASELINE_DIR= None
+CD_DRIVE= E:
+OUTPUT_PATH= D:
+
+#SERVER DETAILS
+#<iLO/Network IP> <username> <password> <Linux/Windows/iLO-ESXi> <Firmware/Driver/Both/All>
+192.168.2.127 root Hptc_ib Linux FW_All
