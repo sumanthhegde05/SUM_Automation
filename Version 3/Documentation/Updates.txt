@@ -1,4 +1,4 @@
-1. Dashboard bugs fixed
+1. Dashboard bugs fixed.
 2. Prerequisites are added.
    prerequisites are:
    1. Clearing iLO repository.
