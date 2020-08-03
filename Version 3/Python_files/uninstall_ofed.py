@@ -13,6 +13,7 @@ def sshCommand(hostname, port, username, password, command):
     stdin, stdout, stderr = sshClient.exec_command(command)
     result = stdout.readlines()
     #result = ''.join(stdout.readlines())
+    #print(result)
     return  result[-1]
 
 def uninstall(input_file):
@@ -23,6 +24,7 @@ def uninstall(input_file):
         data.append([])
         for every in word:
             data[-1].append(every)
+    #print(data)
     file.close()
     test=[]
     #print(data)
@@ -33,14 +35,16 @@ def uninstall(input_file):
                 flag=True
                 value = sshCommand(elem[0],22,elem[1],elem[2],'ofed_uninstall.sh --force')
                 compare = value.rstrip("\n")
+                #print("Asd")
                 if compare=='Uninstall finished successfully':
-                    print("asad")
-                    return  elem[0]+' : ofed uninstallation was successful'
+                    #print("asad")
+                    return elem[0]+' : ofed uninstallation was successful'
                 else:
-                    print("asad")
+                    #print("asad")
                     return  elem[0]+' : ofed uninstallation was unsuccessful'
         except:
             if flag==True and elem[0][0]!='#':
-                return  elem[0]+' : ofed already been uninstalled'
+                return elem[0]+' : ofed already been uninstalled'
+                #print("H")
 
-
+#uninstall('c:/input.txt')
