@@ -42,8 +42,8 @@ Test ping
     \   run keyword if  '${words}[0]'=='OUTPUT_PATH='   set global variable   ${output}   ${words}[1] 
 
     log to console  output_${output}
- #   \   run keyword if  '${words}[0]'=='CUSTOM_BASELINE_DIR='   set global variable     ${custom_baseline_path}     ${words}[1]
- #   \   run keyword if  '${words}[0]'=='CD_DRIVE='   set global variable    ${spp_drive_path}     ${words}[1]
+#   \   run keyword if  '${words}[0]'=='CUSTOM_BASELINE_DIR='   set global variable     ${custom_baseline_path}     ${words}[1]
+#   \   run keyword if  '${words}[0]'=='CD_DRIVE='   set global variable    ${spp_drive_path}     ${words}[1]
     create file      ${output}\\${spp_dir_name}\\${day}\\output_logs\\Details\\dash.txt
     log to console  ${spp_dir_name}
     log to console  ${custom_baseline_path}
@@ -103,7 +103,6 @@ Test main
 Test Launch
     start process    launch_sum.bat   shell=true  cwd=${spp_drive_path}\\
     sleep   1 min
-
     run process     Taskkill /F /IM firefox.exe      shell=True
     sleep   2
     open browser    https://localhost:63002/index.html      ff
@@ -115,8 +114,6 @@ Test Launch
     input text   xpath://input[@id='hp-login-user']     Administrator
     input text      xpath://input[@id='hp-login-password']      Hptc_ib
     click element   xpath://button[@id='hp-login-button']
-
-
 
 Test Baseline
     Set Selenium Implicit Wait      20
@@ -389,12 +386,10 @@ Test Firmware All
     \    ${slno}=     Convert to String  ${inc}    
     \    run keyword if     ${fw_stat}==True   Append To File     Text_files\\result.txt  ${slno} \n
     \    run keyword if     ${fw_stat}==True   log to console  True
-    
     ${matched_file}=     get file    Text_files\\result.txt  encoding=UTF-8
     @{matched_list}=     split to lines  ${matched_file}    
     :For    ${val}  IN  @{matched_list}
     \   @{pos}=     Split String	${val}
     \   ${inc}=     Convert to integer  @{pos}[0]
     \   click element   xpath:/html[1]/body[1]/div[2]/div[4]/div[1]/div[1]/section[1]/form[1]/ol[1]/li[5]/div[1]/ol[1]/li[2]/ol[1]/li[1]/div[1]/ol[1]/div[1]/ol[1]/li[2]/div[1]/div[6]/div[3]/table[1]/tbody[1]/tr[${inc}]/td[1]
-#                            /html[1]/body[1]/div[2]/div[4]/div[1]/div[1]/section[1]/form[1]/ol[1]/li[5]/div[1]/ol[1]/li[2]/ol[1]/li[1]/div[1]/ol[1]/div[1]/ol[1]/li[2]/div[1]/div[6]/div[3]/table[1]/tbody[1]/tr[21]/td[1]/b[1]
     \   sleep  20

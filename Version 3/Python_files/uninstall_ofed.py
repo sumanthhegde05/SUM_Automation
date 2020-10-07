@@ -14,7 +14,7 @@ def sshCommand(hostname, port, username, password, command):
     result = stdout.readlines()
     #result = ''.join(stdout.readlines())
     #print(result)
-    return  result[-1]
+    return  result[-1].strip()
 
 def uninstall(input_file):
     file = open(input_file,"r")
@@ -31,9 +31,11 @@ def uninstall(input_file):
     for elem in data:
         flag=False
         try:
-            if elem[3]=='Linux':
+            if elem[3]=='Linux' and elem[0][0]!='#':
+                #print("enter")
                 flag=True
                 value = sshCommand(elem[0],22,elem[1],elem[2],'ofed_uninstall.sh --force')
+                print(value)
                 compare = value.rstrip("\n")
                 #print("Asd")
                 if compare=='Uninstall finished successfully':
@@ -47,4 +49,5 @@ def uninstall(input_file):
                 return elem[0]+' : ofed already been uninstalled'
                 #print("H")
 
-#uninstall('c:/input.txt')
+
+# print(uninstall('c:\\input.txt'))

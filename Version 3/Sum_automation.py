@@ -34,13 +34,13 @@ try:
             if sys.argv[1]=='--prerequisite_only' and sys.argv[2]=='--input':
                 print("Clearing iLO repository...")
                 os.system('cmd /c "robot -v input:no -v input_file:"'+sys.argv[3]+'" iLO_repo.robot"')
-                time.sleep(5)
+                time.sleep(300)
                 print("Uninstalling OFED...")
                 print(uninstall(sys.argv[3]))               
             elif sys.argv[1]=='--prerequisite' and sys.argv[2]=='--input':
                 print("Clearing iLO repository...")
                 os.system('cmd /c "robot -v input:no -v input_file:"'+sys.argv[3]+'" iLO_repo.robot"')
-                time.sleep(5)
+                time.sleep(300)
                 print("Uninstalling OFED...")
                 print(uninstall(sys.argv[3]))
                 os.system('cmd /c "py Python_files/uninstall_ofed.py"')
