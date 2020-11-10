@@ -10,12 +10,12 @@ def ping_status(path):
     display=[]
     for each in file:
         inc+=1
-        print (each)
+        #print (each)
         word = each.split()
         data.append([])
         for every in word:
             data[inc].append(every)
-            print(data)
+            #print(data)
     file.close()
     file = open(path,"a")
     for elem in range (len(data)):
@@ -23,7 +23,7 @@ def ping_status(path):
         if hostname[0]!='#':      
             response = os.system("ping -c 1 " + hostname)
             # and then check the response...
-            print(response)
+            #print(response)
             if response == 0:
                 pingstatus = " active"
             else:
@@ -38,27 +38,27 @@ def ping_status(path):
             display.append(hostname)
             
     file.close()
-    print(remove)
+    #print(remove)
     if (len(remove)): 
-        print("Entered")
+        #print("Entered")
         file =open(".\\.\\Text_files\\user.txt", "r")
         lines = file.readlines()
-        print("lines:",lines)
+        #print("lines:",lines)
         file.close()
         file= open(".\\.\\Text_files\\user.txt", "w")
         file.write("")
         for line in lines:
             if line.strip("\n") not in remove:
-                print(line)
+                #print(line)
                 file.write(line)
         file.close()
     file = open(".\\.\\Text_files\\user.txt", "r")
     lines = file.readlines()
-    print(lines)
+    #print(lines)
     if len(lines)==0:
         res='no'
     else:
         res='yes'
-    print(res)
+    #print(res)
     return res
 
