@@ -1,0 +1,13 @@
+==============================================================================
+iLO repo                                                                      
+==============================================================================
+Test main                                                             192.168.5.134 admin admin123 iLO-ESXi FW_All
+| PASS |
+------------------------------------------------------------------------------
+iLO repo                                                              | PASS |
+1 critical test, 1 passed, 0 failed
+1 test total, 1 passed, 0 failed
+==============================================================================
+Output:  C:\Users\Administrator\Documents\Robot\Version 3\output.xml
+Log:     C:\Users\Administrator\Documents\Robot\Version 3\repo_clear_log.html
+Report:  C:\Users\Administrator\Documents\Robot\Version 3\repo_clear_report.html

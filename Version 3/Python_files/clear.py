@@ -19,10 +19,17 @@ def clearall():
     except:
         pass
     time.sleep(5)
-    try:
+    '''try:
         os.system("taskkill /IM cmd.exe /f")
     except:
-        pass
+        pass'''
+
+
+'''def clear_cmd():
+    try:
+        os.system("taskkill /IM cmd.exe /f > nul")
+    except:
+        pass'''
 
         #try:
             #os.chmod(first+'\\gatherlogs_x64.exe', stat.S_IWRITE)

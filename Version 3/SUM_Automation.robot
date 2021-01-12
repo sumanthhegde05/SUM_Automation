@@ -35,7 +35,7 @@ Test Initialize
     log to console  Times stamp : ${day}
 
     run keyword if  '${input}'=='no'  set global variable  ${flag}  False
-    run keyword if  '${input}'=='no'  log to cosole  Input file found at "${input_file}"
+    run keyword if  '${input}'=='no'  log to console  Input file found at "${input_file}"
     run keyword if  ${flag}==True  log to console  UI has been enabled. Input file found at "<path to script>\\Text_files\\input.txt"
     run keyword if  ${flag}==True  run process  python  Python_files\\ui.py 
     run keyword if  ${flag}==True  set global variable  ${input_file}  Text_files\\input.txt
@@ -68,13 +68,14 @@ Test Initialize
     \   exit for loop if  '${ssh_result}' == '${compare}'
 
     ${size}  Get File Size   Text_files\\user.txt
-    run keyword if  ${size} == 0 log to console  No nodes were valid
-    run keyword if  ${size} == 0 Fatal Error
+    run keyword if  ${size} == 0  log to console  No nodes were valid
+    run keyword if  ${size} == 0  Fatal Error
 
-    Test main
+    Test main  
 
 *** Keywords ***
 Test main
+    [Arguments]  
     close all browsers
     create file     ${output_path}\\${spp_dir_name}\\${day}\\output_logs\\Details\\baseline_error.txt
     ${file}=    get file    Text_files\\user.txt    encoding=UTF-8
@@ -109,7 +110,7 @@ Test main
         ${deployment_condition}  ${selected}  run keyword and ignore error  Test Deployment  ${node}
         run keyword if  '${deployment_condition}'=='FAIL'  Test Main Error  Deployment_Failed  ${node}
         run keyword if  '${deployment_condition}'=='FAIL'  capture page screenshot
-        continue for loop if  '${deployment_condition}[0]'=='FAIL'
+        continue for loop if  '${deployment_condition}'=='FAIL'
         log to console  Node ${node_line} ${selected} components deployment successful.
     ###################################################################################################################
         ${log_condition}  ${ip_name}  run keyword and ignore error  Test Log  ${selected}
@@ -128,7 +129,7 @@ Test main
 
 Test Start    
     FOR  ${inc}  IN RANGE  5
-        kill cmd
+        kill process
         close all browsers
         run process  python  Python_files\\remove.py
         sleep  2 
@@ -370,12 +371,10 @@ Test Log
     \   ${position}  Evaluate  ${position}+10
     \   log to console  pos_${position}
     \   Execute JavaScript    window.document.querySelector('div#hpsum-node-install-results-panel.hp-grid-panels.hp-grid-narrow').scrollTo(0,${position})
-    \   run keyword and ignore error  click element  xpath:/html[1]/body[1]/div[2]/div[4]/div[1]/div[1]/section[1]/form[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[${it}]/td[5]/a[1]
-    \   ${name}  run keyword and ignore error     get text  xpath:/html[1]/body[1]/div[2]/div[4]/div[1]/div[1]/section[1]/form[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[${it}]/td[3]
-    \   ${status}  ${result}  run keyword and ignore error  get text  xpath:/html[1]/body[1]/div[2]/div[4]/div[1]/div[1]/section[1]/form[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[${it}]/td[4]
+    \   run keyword and ignore error  click element  xpath:/html[1]/body[1]/div[2]/div[4]/div[1]/div[1]/section[1]/form[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[${place_count}]/td[5]/a[1]
+    \   ${name}  run keyword and ignore error     get text  xpath:/html[1]/body[1]/div[2]/div[4]/div[1]/div[1]/section[1]/form[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[${place_count}]/td[3]
+    \   ${status}  ${result}  run keyword and ignore error  get text  xpath:/html[1]/body[1]/div[2]/div[4]/div[1]/div[1]/section[1]/form[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[${place_count}]/td[4]
     \   ${entry}  run keyword and ignore error  Get value  xpath://textarea[@id='log-details']
-    \   log to console  
-    \   log to console  ${name}[1]
     \   run keyword if  '${name}[0]'=='PASS'  run keyword and ignore error  create File  ${output_path}\\${spp_dir_name}\\${day}\\output_logs\\${ip_name}\\${name}[1].txt
     \   run keyword if  '${name}[0]'=='PASS'  run keyword and ignore error  Append to file  ${output_path}\\${spp_dir_name}\\${day}\\output_logs\\${ip_name}\\result.txt  ${name}[1] : ${result} \n
     \   run keyword if  '${name}[0]'=='PASS'  run keyword and ignore error  Append to file  ${output_path}\\${spp_dir_name}\\${day}\\output_logs\\${ip_name}\\${name}[1].txt  ${entry}[1]
@@ -395,7 +394,7 @@ Test End
     click element  xpath://li[@id='reboot-action-item']
     sleep  5
     click element  xpath://button[contains(text(),'Yes, Reboot')]
-    kill cmd
+    kill process
     sleep  5
     create directory  ${output_path}\\${spp_dir_name}\\${day}\\output_logs\\${ip_name}\\gather_logs
     copy file  E:\\packages\\x64\\gatherlogs_x64.exe  ${output_path}\\${spp_dir_name}\\${day}\\output_logs\\${ip_name}\\gather_logs
