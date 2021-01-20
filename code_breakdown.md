@@ -73,11 +73,11 @@ If user choses  to run only prerequisites, then the robot file is executed with 
 
 ```python
 if options.prerequisite_only:
+    print("Uninstalling OFED...")
+    print(uninstall(args[0]))   
     print("Clearing iLO repository...")
     os.system('cmd /c "robot -v input:no -v input_file:"'+args[0]+'" -l repo_clear_log.html -r repo_clear_report.html iLO_repo.robot > repo_clear_debug_details"')
-    time.sleep(300)
-    print("Uninstalling OFED...")
-    print(uninstall(args[0]))      
+       
 ```
 
 uninstall(input_file_path) will uninstall the ofed from the servers mentioned in the input file. This method is in **`uninstall_ofed.py`** file within **`Python_files`** folder. Refer [the uninstall method](#shift_to_uninstall) for more details.
@@ -92,15 +92,15 @@ time delay is required after ofed uninstallation because the system will be rebo
 
 ```python
 elif options.prerequisite:
-        print("Clearing iLO repository...")
-        os.system('cmd /c "robot -v input:no -v input_file:"'+args[0]+'" -l repo_clear_log.html -r repo_clear_report.html iLO_repo.robot > repo_clear_debug_details"')
-        time.sleep(300)
-        print("Uninstalling OFED...")
-        print(uninstall(args[0]))
-        os.system('cmd /c "py Python_files/uninstall_ofed.py"')
-        time.sleep(300)
-        print("SUM Automation in progres...")
-        os.system('cmd /c "robot -v input:no -v input_file:"'+args[0]+'" -l sum_automation_log.html -r sum_automation_report.html SUM_Automation.robot > sum_automation_debug_details"')
+    print("Uninstalling OFED...")
+    print(uninstall(args[0]))
+    print("Clearing iLO repository...")
+    os.system('cmd /c "robot -v input:no -v input_file:"'+args[0]+'" -l repo_clear_log.html -r repo_clear_report.html iLO_repo.robot > repo_clear_debug_details"')
+    
+    time.sleep(300)
+        
+    print("SUM Automation in progres...")
+    os.system('cmd /c "robot -v input:no -v input_file:"'+args[0]+'" -l sum_automation_log.html -r sum_automation_report.html SUM_Automation.robot > sum_automation_debug_details"')
 ```
 
 If user choses to run the automation script alone, then directly the robot script  SUM_Automation.robot will be executed.
