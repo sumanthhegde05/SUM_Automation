@@ -1,9 +1,9 @@
 ==============================================================================
 SUM Automation                                                                
 ==============================================================================
-Test Initialize                                                       Times stamp : 07_01_2021_12_37_51_
-Input file found at "c:\input.txt"
-Spp directory : SPPGen10PlusSnap4.2020_1210.82.iso
+Test Initialize                                                       Times stamp : 20_01_2021_16_59_29_
+Input file found at "C:\input.txt"
+Spp directory : SPPGen10PlusSnap4.2021_0114.93.iso
 Custom baseline : None
 output file : D:
 Cd drive : E:
@@ -12,12 +12,12 @@ Pinging 192.168.5.134 with 32 bytes of data:
 Reply from 192.168.5.134: bytes=32 time<1ms TTL=255
 Reply from 192.168.5.134: bytes=32 time<1ms TTL=255
 Reply from 192.168.5.134: bytes=32 time<1ms TTL=255
-Reply from 192.168.5.134: bytes=32 time<1ms TTL=255
+Reply from 192.168.5.134: bytes=32 time=1ms TTL=255
 
 Ping statistics for 192.168.5.134:
     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
 Approximate round trip times in milli-seconds:
-    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+    Minimum = 0ms, Maximum = 1ms, Average = 0ms
 Ping successfully : yes
 Ssh successfully : yes
 ............................192.168.5.134 admin admin123 iLO-ESXi FW_All.......................................
@@ -40,14 +40,11 @@ True
 True
 Total selected components : 6
 Node 192.168.5.134 admin admin123 iLO-ESXi FW_All 6 components deployment successful.
-Node 192.168.5.134 admin admin123 iLO-ESXi FW_All logs collected successful.
-SUCCESS: The process "sum_service_x64.exe" with PID 3080 has been terminated.
-| PASS |
+| FAIL |
+Execution terminated by signal
 ------------------------------------------------------------------------------
-SUM Automation                                                        | PASS |
-1 critical test, 1 passed, 0 failed
-1 test total, 1 passed, 0 failed
+SUM Automation                                                        | FAIL |
+1 critical test, 0 passed, 1 failed
+1 test total, 0 passed, 1 failed
 ==============================================================================
 Output:  C:\Users\Administrator\Documents\Robot\Version 3\output.xml
-Log:     C:\Users\Administrator\Documents\Robot\Version 3\sum_automation_log.html
-Report:  C:\Users\Administrator\Documents\Robot\Version 3\sum_automation_report.html

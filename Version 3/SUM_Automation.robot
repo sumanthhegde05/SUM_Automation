@@ -114,10 +114,10 @@ Test main
         log to console  Node ${node_line} ${selected} components deployment successful.
     ###################################################################################################################
         ${log_condition}  ${ip_name}  run keyword and ignore error  Test Log  ${selected}
-        run keyword if  '${log_condition}'=='PASS'  run keyword and ignore error  Test End  ${ip_name}
         run keyword if  '${log_condition}'=='FAIL'  Test Main Error  Log_Failed  ${node}
         run keyword if  '${log_condition}'=='FAIL'  capture page screenshot
         log to console  Node ${node_line} logs collected successful.
+        run keyword and ignore error  Test End  ${ip_name}
     ###################################################################################################################
         sleep  30
         clearall
@@ -359,7 +359,7 @@ Test Log
     ${installation_status}  run keyword and ignore error  wait until page contains  Install done  timeout=75 min
     ${error_check}  run keyword if  '${installation_status}[0]'=='FAIL'  run keyword and return status  element should contain  xpath://header[@class='hp-notification-summary']  Deploy completed with errors.
     run keyword if  ${error_check}==True  Test Error  ${ip_name}
-    run keyword if  ${error_check}==True  FAIL  Test not ready
+    run keyword if  ${error_check}==True  FAIL  ${ip_name}
     run keyword and ignore error  click element  xpath://a[@class='hp-button company-a']
     sleep  2
     run keyword and ignore error  click element  xpath://a[@class='hp-button']
@@ -386,16 +386,17 @@ Test Log
 Test End
     [Arguments]     ${ip_name}
     sleep  5
-    click element  xpath://input[@id='hpsum-node-install-results-close']
+    run keyword and ignore error  click element  xpath://input[@id='hpsum-node-install-results-close']
     sleep  5
-    click element  xpath://label[contains(text(),'Actions')]
+    run keyword and ignore error  click element  xpath://label[contains(text(),'Actions')]
     sleep  10
-    #click element   xpath://a[@id='hpsum-node-action-reboot']
-    click element  xpath://li[@id='reboot-action-item']
+    #run keyword and ignore error  click element   xpath://a[@id='hpsum-node-action-reboot']
+    run keyword and ignore error  click element  xpath://li[@id='reboot-action-item']
     sleep  5
-    click element  xpath://button[contains(text(),'Yes, Reboot')]
+    run keyword and ignore error  click element  xpath://button[contains(text(),'Yes, Reboot')]
     kill process
     sleep  5
+    log to console  ${output_path} ${spp_dir_name} ${day} ${ip_name}
     create directory  ${output_path}\\${spp_dir_name}\\${day}\\output_logs\\${ip_name}\\gather_logs
     copy file  E:\\packages\\x64\\gatherlogs_x64.exe  ${output_path}\\${spp_dir_name}\\${day}\\output_logs\\${ip_name}\\gather_logs
     start Process  gatherlogs_x64.exe  shell=True  cwd=${output_path}\\${spp_dir_name}\\${day}\\output_logs\\${ip_name}\\gather_logs

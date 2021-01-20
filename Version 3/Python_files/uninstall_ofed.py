@@ -26,28 +26,34 @@ def uninstall(input_file):
             data[-1].append(every)
     #print(data)
     file.close()
-    test=[]
-    #print(data)
+    
+    entry = False
     for elem in data:
-        flag=False
-        try:
-            if elem[3]=='Linux' and elem[0][0]!='#':
-                #print("enter")
-                flag=True
-                value = sshCommand(elem[0],22,elem[1],elem[2],'ofed_uninstall.sh --force')
-                print(value)
-                compare = value.rstrip("\n")
-                #print("Asd")
-                if compare=='Uninstall finished successfully':
-                    #print("asad")
-                    return elem[0]+' : ofed uninstallation was successful'
-                else:
-                    #print("asad")
-                    return  elem[0]+' : ofed uninstallation was unsuccessful'
-        except:
-            if flag==True and elem[0][0]!='#':
-                return elem[0]+' : ofed already been uninstalled'
-                #print("H")
+        string = ''
+        if len(elem)==0:
+            continue
 
+        if entry == True:
+            flag=False
+            try:
+                if elem[3]=='Linux' and elem[0][0]!='#':
+                    flag=True
+                    value = sshCommand(elem[0],22,elem[1],elem[2],'ofed_uninstall.sh --force')
+                    compare = value.rstrip("\n")
+                    if compare=='Uninstall finished successfully':
+                        string += elem[0]+' : ofed uninstallation was successful'
+                    else:
+                        string +=  elem[0]+' : ofed uninstallation was unsuccessful'
+            except:
+                if flag==True and elem[0][0]!='#':
+                    string += elem[0]+' : ofed already been uninstalled'
+            '''if elem[0][0]!='#' and elem[3]=='Linux' or elem[3]=='iLO-ESXi':
+                print(elem)
+                sshCommand(elem[0],22,elem[1],elem[2],'reboot')'''
 
-# print(uninstall('c:\\input.txt'))
+        if '#SERVER' in elem[0]:
+            entry = True
+    return string
+
+if __name__=='__main__':
+    print(uninstall('c:\\input.txt'))
