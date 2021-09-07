@@ -1,0 +1,1 @@
+10.0.205.20 root Hptc_ib Linux Both

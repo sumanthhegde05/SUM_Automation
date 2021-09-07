@@ -1,0 +1,13 @@
+==============================================================================
+iLO repo                                                                      
+==============================================================================
+Test main                                                             10.0.205.20 root Hptc_ib Linux Both
+| FAIL |
+Support for the old for loop syntax has been removed. Replace ':For' with 'FOR', end the loop with 'END', and remove escaping backslashes.
+------------------------------------------------------------------------------
+iLO repo                                                              | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Users\Administrator\Desktop\SUM_Automation\output.xml
+Log:     C:\Users\Administrator\Desktop\SUM_Automation\repo_clear_log.html
+Report:  C:\Users\Administrator\Desktop\SUM_Automation\repo_clear_report.html
